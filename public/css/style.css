@@ -1,0 +1,31 @@
+#comment-field {
+  display: none;
+}
+.img-space{
+  margin-top: 20px;
+}
+video{
+  border-radius: 5px;
+  box-shadow: 0 0 10px;
+}
+audio{
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px;
+}
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+img.star
+{
+    -webkit-animation-name:             rotate;
+    -webkit-animation-duration:         1s;
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+}
