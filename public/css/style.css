@@ -29,3 +29,11 @@ img.star
     -webkit-animation-iteration-count:  infinite;
     -webkit-animation-timing-function: linear;
 }
+
+.form-submit{
+  padding-top: 10px;
+}
+
+.span12.form-submit .btn-warning{
+  width: 100%;
+}

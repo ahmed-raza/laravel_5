@@ -13,10 +13,12 @@
 
 Route::get('/', 'HomeController@index');
 
+// Authentication Routes
+Route::get('user/login', 'AuthController@index');
+Route::post('user/login/me', 'AuthController@login');
+Route::get('user/register', 'AuthController@regPage');
+Route::post('user/register/me', 'AuthController@register');
+Route::get('user/logout', 'AuthController@logout');
 
-// User related routes
-Route::get('user/login', 'UserController@index');
-Route::post('user/login/me', 'UserController@login');
-Route::get('user/register', 'UserController@regPage');
-Route::post('user/register/me', 'UserController@register');
-Route::get('user/logout', 'UserController@logout');
+// Profile Routes
+Route::resource('profile', 'ProfileController');

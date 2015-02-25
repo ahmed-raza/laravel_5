@@ -11,13 +11,13 @@ use Hash;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller {
+class AuthController extends Controller {
 
 	public function index(){
     $data = array(
       'title' => 'Beasty B | Login',
       );
-    return view('user.index')->with('data', $data);
+    return view('auth.index')->with('data', $data);
   }
 
   public function login(UserLoginRequest $UserLoginRequest){
@@ -37,23 +37,23 @@ class UserController extends Controller {
     $data = array(
       'title' => 'Beasty B | Register',
       );
-    return view('user.register')->with('data', $data);
+    return view('auth.register')->with('data', $data);
   }
 
   public function register(UserRegRequest $UserRegRequest){
+    if (Users::count() == 0) {
+      $user_rank = 'admin';
+    }
+    else{
+      $user_rank = 'user';
+    }
     Users::insert(array(
         'name' => $UserRegRequest->get('name'),
         'email' => $UserRegRequest->get('email'),
-        'password' => Hash::make($UserRegRequest->get('password'))
+        'password' => Hash::make($UserRegRequest->get('password')),
+        'rank' => $user_rank
       ));
     return redirect('user/login')->with('message','You have registered successfully.');
-  }
-
-  public function profile(){
-    $data = array(
-      'title' => 'Beasty B | Profile',
-      );
-    return view('user.profile')->with('data', $data);
   }
 
   public function logout(){
