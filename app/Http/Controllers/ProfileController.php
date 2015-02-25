@@ -7,6 +7,7 @@ use App\Users;
 use Auth;
 use Redirect;
 use DB;
+use Hash;
 
 use Illuminate\Http\Request;
 
@@ -87,15 +88,21 @@ class ProfileController extends Controller {
 	 */
 	public function update($id, ProfileEditRequest $ProfileEditRequest)
 	{
-    DB::table('users')
-    ->where('id', $id)
-    ->update(array(
-    		'name'		=> $ProfileEditRequest->get('name'),
-        'bio'			=> $ProfileEditRequest->get('bio'),
-        'city'		=> $ProfileEditRequest->get('city'),
-        'country'	=> $ProfileEditRequest->get('country')
-      ));
-		return redirect('profile')->with('message', 'Your profile have been updated.');
+		if (Hash::check($ProfileEditRequest->get('password'), Auth::user()->password)) {
+	    DB::table('users')
+	    ->where('id', $id)
+	    ->update(array(
+	    		'name'		=> $ProfileEditRequest->get('name'),
+	        'bio'			=> $ProfileEditRequest->get('bio'),
+	        'city'		=> $ProfileEditRequest->get('city'),
+	        'country'	=> $ProfileEditRequest->get('country'),
+	        'password'=> Hash::make($ProfileEditRequest->get('new_password')),
+	      ));
+			return redirect('profile')->with('message', 'Your profile have been updated.');
+		}
+		else{
+			return Redirect::back()->withErrors('Current password is wrong.')->withInput();
+		}
 	}
 
 	/**

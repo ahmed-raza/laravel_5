@@ -26,6 +26,9 @@ class ProfileEditRequest extends Request {
 			'city'		=> 'min:3',
 			'country'	=> 'required|min:4',
 			'bio'			=> 'required|min:10',
+			'password'=> 'required',
+			'new_password' => 'min:5',
+			'password_confirmation' => 'min:5|same:new_password',
 		];
 	}
 
