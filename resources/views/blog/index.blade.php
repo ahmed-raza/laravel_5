@@ -11,7 +11,7 @@
   <ul class="blogs">
   @foreach($data['blogs'] as $blog)
     <li>
-      <h3>{!! HTML::linkRoute('blog.show', substr($blog->title, 0, 20).'...', $blog->slug) !!}</h3>
+      <h3>{!! HTML::linkRoute('blog.show', $blog->title, $blog->slug) !!}</h3>
       <p>{!! substr($blog->body, 0, 100).'...' !!}</p>
     </li>
   @endforeach

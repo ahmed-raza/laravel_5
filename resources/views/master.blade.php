@@ -28,7 +28,9 @@
     @include('plugins.errors')
     @if(Session::has('message'))
     <div class="alert alert-success">
-      <p>{{ Session::get('message') }}</p>
+      <ul>
+        <li>{{ Session::get('message') }}</li>
+      </ul>
     </div>
     @endif
     @yield('content')

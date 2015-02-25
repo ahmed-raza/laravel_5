@@ -45,4 +45,15 @@ img.star
 .submission-info {
   font-size: 12px;
   color: grey;
+  float: left;
+  clear: both;
+}
+.actions {
+  float: right;
+}
+.field-body {
+  clear: both;
+}
+.actions > span {
+  display: inline-block;
 }

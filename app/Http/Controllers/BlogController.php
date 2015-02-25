@@ -5,6 +5,7 @@ use App\Http\Requests\BlogPostRequest;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use Auth;
+use Redirect;
 
 use Illuminate\Http\Request;
 
@@ -58,7 +59,7 @@ class BlogController extends Controller {
 		$post->keywords  = $BlogPostRequest->get('keywords');
 		$post->slug = \Illuminate\Support\Str::slug($BlogPostRequest->get('title'));
 		$post->save();
-		return redirect('blog')->with('message', "Blog post $BlogPostRequest->get('title') created.");
+		return redirect('blog')->with('message', "Blog post ".$BlogPostRequest->get('title')." created.");
 	}
 
 	/**
@@ -70,10 +71,16 @@ class BlogController extends Controller {
 	public function show($slug)
 	{
 	  $query = Blog::where('slug', $slug)->first();
+	  if (Auth::user()) {
+	  	$username = Auth::user()->name;
+	  }
+	  else{
+	  	$username = 'annonymous';
+	  }
 	  $data = array(
 	    'title' => 'Beasty B | '.$query->title,
 	    'post' => $query,
-	    'username' => Auth::user()->name,
+	    'username' => $username,
 	    );
 	  return view('blog.show')->with('data', $data);
 	}
@@ -108,7 +115,9 @@ class BlogController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+    Blog::find($id)->delete();
+
+    return Redirect::route('blog.index');
 	}
 
 }
