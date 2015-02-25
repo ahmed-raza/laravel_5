@@ -22,7 +22,6 @@ class ProfileEditRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name'		=> 'required|min:4|unique:users',
 			'city'		=> 'min:3',
 			'country'	=> 'required|min:4',
 			'bio'			=> 'required|min:10',

@@ -6,7 +6,7 @@
   {!! Form::open(array('method'=>'PATCH', 'route'=>array('profile.update', $data['user']->id))) !!}
   <div class="span6">
     {!! Form::label('Username') !!}
-    {!! Form::text('name', $data['user']->name, array('class'=>'input-xlarge')) !!}
+    {!! Form::text('name', $data['user']->name, array('class'=>'input-xlarge', 'disabled')) !!}
     {!! Form::label('Email') !!}
     {!! Form::text('email', $data['user']->email, array('class'=>'input-xlarge', 'disabled')) !!}
     {!! Form::label('Rank') !!}

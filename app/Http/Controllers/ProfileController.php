@@ -92,7 +92,6 @@ class ProfileController extends Controller {
 	    DB::table('users')
 	    ->where('id', $id)
 	    ->update(array(
-	    		'name'		=> $ProfileEditRequest->get('name'),
 	        'bio'			=> $ProfileEditRequest->get('bio'),
 	        'city'		=> $ProfileEditRequest->get('city'),
 	        'country'	=> $ProfileEditRequest->get('country'),
