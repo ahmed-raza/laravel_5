@@ -22,3 +22,6 @@ Route::get('user/logout', 'AuthController@logout');
 
 // Profile Routes
 Route::resource('profile', 'ProfileController');
+
+// Blog routes
+Route::resource('blog', 'BlogController');

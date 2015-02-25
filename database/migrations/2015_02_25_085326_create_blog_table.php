@@ -16,10 +16,11 @@ class CreateBlogTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('author');
-			$table->string('title');
+			$table->string('title')->unique();
 			$table->text('body');
 			$table->string('description');
 			$table->string('keywords');
+			$table->string('slug');
 			$table->timestamps();
 		});
 	}

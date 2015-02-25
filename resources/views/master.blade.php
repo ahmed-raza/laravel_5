@@ -13,10 +13,10 @@
   <div class="navbar">
     <div class="navbar-inner">
       <ul class="nav">
-        <li>{!! HTML::link('/', 'Home') !!}</li>
-        <li>{!! HTML::link('blog', 'Blog') !!}</li>
+        <li class="{{ Request::is('/') ? 'active' : '' }}">{!! HTML::link('/', 'Home') !!}</li>
+        <li class="{{ Request::is('blog') ? 'active' : '' }}">{!! HTML::link('blog', 'Blog') !!}</li>
         @if(Auth::user())
-        <li>{!! HTML::link('profile', 'Profile') !!}</li>
+        <li class="{{ Request::is('profile') ? 'active' : '' }}">{!! HTML::link('profile', 'Profile') !!}</li>
         <li>{!! HTML::link('user/logout', 'Logout') !!}</li>
         @else
         <li>{!! HTML::link('user/login', 'Login') !!}</li>
