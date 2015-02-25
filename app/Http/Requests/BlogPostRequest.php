@@ -22,7 +22,7 @@ class BlogPostRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title'=>'required|min:3',
+			'title'=>'required|min:3|max:10|unique:blog',
 			'body'=>'required|min:10'
 		];
 	}

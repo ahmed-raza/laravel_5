@@ -40,6 +40,7 @@ img.star
 }
 .blogs li{
   list-style: none;
+  border-bottom: 1px solid #ccc;
 }
 .submission-info {
   font-size: 12px;
