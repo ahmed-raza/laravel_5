@@ -19,7 +19,7 @@
         <li class="{{ Request::is('profile') ? 'active' : '' }}">{!! HTML::link('profile', 'Profile') !!}</li>
         <li>{!! HTML::link('user/logout', 'Logout') !!}</li>
         @else
-        <li>{!! HTML::link('user/login', 'Login') !!}</li>
+        <li class="{{ Request::is('user/login') ? 'active' : '' }}">{!! HTML::link('user/login', 'Login') !!}</li>
         @endif
       </ul>
     </div>

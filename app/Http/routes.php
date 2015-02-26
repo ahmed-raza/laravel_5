@@ -25,3 +25,6 @@ Route::resource('profile', 'ProfileController');
 
 // Blog routes
 Route::resource('blog', 'BlogController');
+
+// Comment routes
+Route::resource('comment', 'CommentsController');
