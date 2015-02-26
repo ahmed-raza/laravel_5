@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Blog;
 use Auth;
 use Redirect;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -93,7 +94,17 @@ class BlogController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+	  $query = Blog::find($id);
+		if (Auth::user() && $query->author == Auth::user()->name ) {
+		  $data = array(
+		    'title' => 'Beasty B | Edit '.$query->title,
+		    'post' => $query,
+		    );
+		  return view('blog.edit')->with('data', $data);
+		}
+		else{
+			return Redirect::back()->withErrors("You don't own '$query->title' post.");
+		}
 	}
 
 	/**
@@ -102,9 +113,18 @@ class BlogController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, BlogPostRequest $BlogPostRequest)
 	{
-		//
+		$input = $BlogPostRequest->all();
+		Blog::where('id', $id)->update(array(
+			'title'=>$input['title'],
+			'description'=>$input['description'],
+			'keywords'=>$input['keywords'],
+			'body'=>$input['body'],
+			'slug'=>\Illuminate\Support\Str::slug($input['title']),
+			));
+		$slug = \Illuminate\Support\Str::slug($input['title']);
+		return Redirect::to('blog/'.$slug)->with('message', 'Post updated.');
 	}
 
 	/**
@@ -116,7 +136,6 @@ class BlogController extends Controller {
 	public function destroy($id)
 	{
     Blog::find($id)->delete();
-
     return Redirect::route('blog.index');
 	}
 
