@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\BlogPostRequest;
 use App\Http\Controllers\Controller;
 use App\Blog;
+use App\Comments;
 use Auth;
 use Redirect;
 use DB;
@@ -19,7 +20,7 @@ class BlogController extends Controller {
 	 */
 	public function index()
 	{
-		$query = Blog::get();
+		$query = Blog::orderBy('created_at', 'DESC')->paginate(5);
 		$data = array(
 			'title'=>'Beast B | Blog',
 			'blogs'=>$query
@@ -41,7 +42,7 @@ class BlogController extends Controller {
 			return view('blog.create')->with('data', $data);
 		}
 		else{
-			return redirect('user/login')->withErrors('You need login first.');
+			return redirect('user/login')->withErrors('You need to login first.');
 		}
 	}
 
@@ -72,6 +73,7 @@ class BlogController extends Controller {
 	public function show($slug)
 	{
 	  $query = Blog::where('slug', $slug)->first();
+	  $comments = Comments::where('blog_id', $query->id)->get();
 	  if (Auth::user()) {
 	  	$username = Auth::user()->name;
 	  }
@@ -81,6 +83,7 @@ class BlogController extends Controller {
 	  $data = array(
 	    'title' => 'Beasty B | '.$query->title,
 	    'post' => $query,
+	    'comments'=>$comments,
 	    'username' => $username,
 	    );
 	  return view('blog.show')->with('data', $data);

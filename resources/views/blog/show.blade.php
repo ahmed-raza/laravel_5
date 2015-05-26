@@ -24,18 +24,45 @@
       <p>{!! $data['post']->body !!}</p>
     </div>
   </div>
-
   <div class="comments-holder">
     @if(Auth::user())
     <div class="comments-form">
-      <div class="span12">
+      <div class="">
         {!! Form::open(array('route'=>'comment.store')) !!}
-        {!! Form::label('Comments') !!}
-        {!! Form::textarea('comment', '',array('class'=>'ckeditor')) !!}
+        <div class="field-hidden">
+          {!! Form::hidden('blog_id', $data['post']->id) !!}
+        </div>
+        <div class="field-comment">
+          {!! Form::label('Comments') !!}
+          {!! Form::textarea('comment', '',array('class'=>'ckeditor comment-body')) !!}
+        </div>
+        <div class="form-submit">
+          {!! Form::submit('Comment', array('class'=>'btn btn-success')) !!}
+        </div>
         {!! Form::close() !!}
       </div>
     </div>
     @endif
+    <div class="comments-holder">
+      <ul class="comments">
+        @foreach($data['comments'] as $comment)
+          <li>
+            <span class="commenter">
+              <strong>{!! $comment->commenter !!}</strong>
+              @if(Auth::user() && Auth::user()->name == $comment->commenter)
+              <span class="actions">
+                <span class="edit">{!! HTML::linkRoute('comment.edit', 'Edit', $comment->id, array('class'=>'btn btn-mini btn-inverse')) !!}</span>
+                <span class="btn btn-mini btn-danger">Delete</span>
+              </span>
+              @endif
+            </span>
+            <div class="comment">
+              {!! $comment->comment !!}
+            </div>
+          </li>
+        @endforeach
+      </ul>
+    </div>
   </div>
 
 @endsection

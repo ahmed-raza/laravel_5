@@ -4,8 +4,7 @@
 
   <h2>User Profile</h2>
 
-  <div class="row">
-    <div class="span4">
+    <div class="span8">
       <div class="well">
         {!! HTML::linkRoute('profile.edit', '', $data['user']->id, array('class'=>'close icon icon-pencil')) !!}
         <legend>{{ $data['user']->name }}</legend>
@@ -16,6 +15,17 @@
         <p>{!! $data['user']->bio !!}</p>
       </div>
     </div>
-  </div>
+  @if($data['user']->rank == 'admin')
+    <div class="span3">
+      <div class="well">
+        <legend>Admin Menu</legend>
+        <ul>
+          <li>{!! HTML::link('admin/posts', "Blog Posts") !!}</li>
+          <li>{!! HTML::link('admin/users', "Users") !!}</li>
+          <li>{!! HTML::link('admin/config', "Site Configuration") !!}</li>
+        </ul>
+      </div>
+    </div>
+  @endif
 
 @endsection

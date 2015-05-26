@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration {
 			$table->string('commenter');
 			$table->string('commenter_pic');
 			$table->text('comment');
+			$table->integer('blog_id');
 			$table->timestamps();
 		});
 	}

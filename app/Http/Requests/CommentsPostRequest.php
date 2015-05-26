@@ -11,7 +11,7 @@ class CommentsPostRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,8 @@ class CommentsPostRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'comment'=>'required|min:1',
+			'blog_id'=>'required',
 		];
 	}
 

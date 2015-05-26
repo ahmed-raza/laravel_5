@@ -1,7 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CommentsPostRequest;
 use App\Http\Controllers\Controller;
+use App\Comments;
+use App\Blog;
+use Auth;
+use Redirect;
 
 use Illuminate\Http\Request;
 
@@ -32,9 +37,14 @@ class CommentsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CommentsPostRequest $CommentsPostRequest)
 	{
-		//
+		$comment = new Comments;
+		$comment->commenter = Auth::user()->name;
+		$comment->comment = $CommentsPostRequest->get('comment');
+		$comment->blog_id = $CommentsPostRequest->get('blog_id');
+		$comment->save();
+		return Redirect::back();
 	}
 
 	/**
@@ -78,7 +88,8 @@ class CommentsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Comments::find($id)->delete();
+		return redirect()->back();
 	}
 
 }

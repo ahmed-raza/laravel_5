@@ -11,4 +11,8 @@ $(document).ready(function(){
   });
   $('#video').prop("volume", '0.2');
   $('#audio').prop("volume", '0.5');
+  $('.hidden-forms').hide();
+  $('.comments .actions .btn-danger').click(function(){
+    $('.hidden-forms').show();
+  });
 });
