@@ -7,6 +7,7 @@
   {!! HTML::style('css/style.css') !!}
   {!! HTML::script('js/bootstrap.js') !!}
   {!! HTML::script('js/jquery-2.1.1.js') !!}
+  {!! HTML::script('ckeditor/ckeditor.js') !!}
   {!! HTML::script('ckeditor-full/ckeditor.js') !!}
   <script>CKEDITOR.replace('content');</script>
   {!! HTML::script('js/test.jquery.js') !!}
@@ -26,28 +27,30 @@
       </ul>
     </div>
   </div>
-  <div class="container">
-    <div class="hidden-forms">
-      <div class="alert alert-danger">Are you sure you wan't to carry out the operation?</div>
-      @if(isset($comment))
-      {!! Form::open(array('method'=>'DELETE', 'route'=>array('comment.destroy', $comment->id))) !!}
-      {!! Form::submit('Delete', array('class'=>'btn btn-danger btn-mini')) !!}
-      {!! Form::close() !!}
+  <div class="main-wrapper">
+    <div class="container">
+      <div class="hidden-forms">
+        <div class="alert alert-danger">Are you sure you wan't to carry out the operation?</div>
+        @if(isset($comment))
+        {!! Form::open(array('method'=>'DELETE', 'route'=>array('comment.destroy', $comment->id))) !!}
+        {!! Form::submit('Delete', array('class'=>'btn btn-danger btn-mini')) !!}
+        {!! Form::close() !!}
+        @endif
+      </div>
+      @include('plugins.errors')
+      @if(Session::has('message'))
+      <div class="alert alert-success">
+        <ul>
+          <li>{{ Session::get('message') }}</li>
+        </ul>
+      </div>
       @endif
+      @yield('content')
     </div>
-    @include('plugins.errors')
-    @if(Session::has('message'))
-    <div class="alert alert-success">
-      <ul>
-        <li>{{ Session::get('message') }}</li>
-      </ul>
-    </div>
-    @endif
-    @yield('content')
-  </div>
-  <div class="footer">
-    <div class="rights">
-      <p>Developed by Ahmed Raza. Powered by Laravel 5.0, All rights reserved 2015.</p>
+    <div class="footer">
+      <div class="rights">
+        <p>Developed by Ahmed Raza. Powered by Laravel 5.0, All rights reserved 2015.</p>
+      </div>
     </div>
   </div>
 </body>

@@ -95,12 +95,20 @@ class ProfileController extends Controller {
 	        'bio'			=> $ProfileEditRequest->get('bio'),
 	        'city'		=> $ProfileEditRequest->get('city'),
 	        'country'	=> $ProfileEditRequest->get('country'),
-	        'password'=> Hash::make($ProfileEditRequest->get('new_password')),
 	      ));
 			return redirect('profile')->with('message', 'Your profile have been updated.');
 		}
 		else{
 			return Redirect::back()->withErrors('Current password is wrong.')->withInput();
+		}
+
+		if (Hash::check($ProfileEditRequest->get('password'), Auth::user()->password) && !empty($ProfileEditRequest->get('new_password'))) {
+	    DB::table('users')
+	    ->where('id', $id)
+	    ->update(array(
+          'password'=> Hash::make($ProfileEditRequest->get('new_password')),
+	      ));
+			return redirect('profile')->with('message', 'Your profile have been updated.');
 		}
 	}
 
