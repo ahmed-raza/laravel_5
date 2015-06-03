@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <div class="blog blog-{{ $data['post']->id }}">
+  <div class="blog blog-post-{{ $data['post']->id }} blog-post">
     <div class="title">
       <h2>{{ $data['post']->title }}</h2>
     </div>
@@ -22,6 +22,13 @@
     </div>
     <div class="field-body">
       <p>{!! $data['post']->body !!}</p>
+    </div>
+    <div class="yoxview">
+      <div class="field-image">
+        <a href="img/{{ $data['post']->img_name }}">
+          <img src="{{ url() }}/img/{{ $data['post']->img_name }}" alt="Blog Post Image" class="img img-polaroid blog-image">
+        </a>
+      </div>
     </div>
   </div>
   <div class="comments-holder">

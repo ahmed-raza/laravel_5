@@ -17,7 +17,12 @@ class AuthController extends Controller {
     $data = array(
       'title' => 'Beasty B | Login',
       );
-    return view('auth.index')->with('data', $data);
+    if (!Auth::user()) {
+      return view('auth.index')->with('data', $data);
+    }
+    else{
+      return Redirect::to('profile')->with('message', 'You are already logged in.');
+    }
   }
 
   public function login(UserLoginRequest $UserLoginRequest){

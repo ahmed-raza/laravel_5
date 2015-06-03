@@ -28,3 +28,7 @@ Route::resource('blog', 'BlogController');
 
 // Comment routes
 Route::resource('comment', 'CommentsController');
+
+// Admin Panel Routes
+Route::get('admin/users', 'AdminController@users');
+Route::get('admin/posts', 'AdminController@posts');

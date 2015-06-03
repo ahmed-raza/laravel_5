@@ -85,17 +85,8 @@ img.star
 .comments-holder .comments li {
   border-bottom: 1px solid #ccc;
 }
-html, body{
-  height: 95.2%;
-}
-.main-wrapper {
-  min-height: 100%;
-  position: relative;
-}
 .footer {
   background: #1b1b1b;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   color: #999999;
   height: 100px;
@@ -103,4 +94,8 @@ html, body{
 }
 .footer .rights{
   padding: 38px 22px 0px;
+}
+.blog-post .field-image img {
+  width: 100px;
+  height: 100px;
 }

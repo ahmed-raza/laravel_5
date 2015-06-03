@@ -22,8 +22,9 @@ class BlogPostRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title'=>'required|min:3|max:25|unique:blog',
-			'body'=>'required|min:10'
+			'title'	=>'required|min:3|max:25|unique:blog',
+			'body'	=>'required|min:10',
+			'image'	=>'required|image|mimes:jpeg,bmp,png,jpg',
 		];
 	}
 

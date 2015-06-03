@@ -5,4 +5,5 @@
   <ul>
     <li>{{ Session::get('message') }}</li>
   </ul>
+</div>
 @endif

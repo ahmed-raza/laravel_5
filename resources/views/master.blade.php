@@ -5,10 +5,11 @@
   <title>{{ $data['title'] }}</title>
   {!! HTML::style('css/bootstrap.css') !!}
   {!! HTML::style('css/style.css') !!}
-  {!! HTML::script('js/bootstrap.js') !!}
   {!! HTML::script('js/jquery-2.1.1.js') !!}
-  {!! HTML::script('ckeditor/ckeditor.js') !!}
+  {!! HTML::script('js/bootstrap.min.js') !!}
+  {!! HTML::script('js/bootstrap.js') !!}
   {!! HTML::script('ckeditor-full/ckeditor.js') !!}
+  {!! HTML::script('yoxview/yoxview-init.js') !!}
   <script>CKEDITOR.replace('content');</script>
   {!! HTML::script('js/test.jquery.js') !!}
 </head>
@@ -38,13 +39,7 @@
         @endif
       </div>
       @include('plugins.errors')
-      @if(Session::has('message'))
-      <div class="alert alert-success">
-        <ul>
-          <li>{{ Session::get('message') }}</li>
-        </ul>
-      </div>
-      @endif
+      @include('plugins.message')
       @yield('content')
     </div>
     <div class="footer">

@@ -7,7 +7,6 @@ use App\Blog;
 use App\Comments;
 use Auth;
 use Redirect;
-use DB;
 
 use Illuminate\Http\Request;
 
@@ -53,14 +52,17 @@ class BlogController extends Controller {
 	 */
 	public function store(BlogPostRequest $BlogPostRequest)
 	{
+		$imageName = \Illuminate\Support\Str::slug($BlogPostRequest->get('title')).'-'. md5($BlogPostRequest->get('title')) .'.'.$BlogPostRequest->file('image')->getClientOriginalExtension();
 		$post = new Blog;
 		$post->author = Auth::user()->name;
 		$post->title  = $BlogPostRequest->get('title');
+		$post->img_name = $imageName;
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');
 		$post->keywords  = $BlogPostRequest->get('keywords');
 		$post->slug = \Illuminate\Support\Str::slug($BlogPostRequest->get('title'));
 		$post->save();
+		$BlogPostRequest->file('image')->move(base_path() . '/public/img/', $imageName);
 		return redirect('blog')->with('message', "Blog post ".$BlogPostRequest->get('title')." created.");
 	}
 
@@ -72,21 +74,21 @@ class BlogController extends Controller {
 	 */
 	public function show($slug)
 	{
-	  $query = Blog::where('slug', $slug)->first();
-	  $comments = Comments::where('blog_id', $query->id)->get();
-	  if (Auth::user()) {
-	  	$username = Auth::user()->name;
-	  }
-	  else{
-	  	$username = 'annonymous';
-	  }
-	  $data = array(
-	    'title' => 'Beasty B | '.$query->title,
-	    'post' => $query,
-	    'comments'=>$comments,
-	    'username' => $username,
-	    );
-	  return view('blog.show')->with('data', $data);
+		$query = Blog::where('slug', $slug)->first();
+		$comments = Comments::where('blog_id', $query->id)->get();
+		if (Auth::user()) {
+			$username = Auth::user()->name;
+		}
+		else{
+			$username = 'annonymous';
+		}
+		$data = array(
+			'title' => 'Beasty B | '.$query->title,
+			'post' => $query,
+			'comments'=>$comments,
+			'username' => $username,
+			);
+		return view('blog.show')->with('data', $data);
 	}
 
 	/**
@@ -97,13 +99,13 @@ class BlogController extends Controller {
 	 */
 	public function edit($id)
 	{
-	  $query = Blog::find($id);
+		$query = Blog::find($id);
 		if (Auth::user() && $query->author == Auth::user()->name ) {
-		  $data = array(
-		    'title' => 'Beasty B | Edit '.$query->title,
-		    'post' => $query,
-		    );
-		  return view('blog.edit')->with('data', $data);
+			$data = array(
+				'title' => 'Beasty B | Edit '.$query->title,
+				'post' => $query,
+				);
+			return view('blog.edit')->with('data', $data);
 		}
 		else{
 			return Redirect::back()->withErrors("You don't own '$query->title' post.");
@@ -138,8 +140,12 @@ class BlogController extends Controller {
 	 */
 	public function destroy($id)
 	{
-    Blog::find($id)->delete();
-    return Redirect::route('blog.index');
+		$image_name = Blog::find($id);
+		$image_name = $image_name->img_name;
+		Storage::delete(url().'/img/'.$image_name);
+		Blog::find($id)->delete();
+
+		return Redirect::route('blog.index')->with('message', url().'/img/'.$image_name);
 	}
 
 }

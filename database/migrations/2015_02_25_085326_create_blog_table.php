@@ -17,6 +17,7 @@ class CreateBlogTable extends Migration {
 			$table->increments('id');
 			$table->string('author');
 			$table->string('title')->unique();
+			$table->string('img_name')->unique();
 			$table->text('body');
 			$table->string('description');
 			$table->string('keywords');
