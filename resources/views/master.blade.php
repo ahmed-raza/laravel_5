@@ -14,18 +14,20 @@
   {!! HTML::script('js/test.jquery.js') !!}
 </head>
 <body>
-  <div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-      <ul class="nav">
-        <li class="{{ Request::is('/') ? 'active' : '' }}">{!! HTML::link('/', 'Home') !!}</li>
-        <li class="{{ Request::is('blog') ? 'active' : '' }}">{!! HTML::link('blog', 'Blog') !!}</li>
-        @if(Auth::user())
-        <li class="{{ Request::is('profile') ? 'active' : '' }}">{!! HTML::link('profile', 'Profile') !!}</li>
-        <li>{!! HTML::link('user/logout', 'Logout') !!}</li>
-        @else
-        <li class="{{ Request::is('user/login') ? 'active' : '' }}">{!! HTML::link('user/login', 'Login') !!}</li>
-        @endif
-      </ul>
+  <div class="header">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <ul class="nav">
+          <li class="{{ Request::is('/') ? 'active' : '' }}">{!! HTML::link('/', 'Home') !!}</li>
+          <li class="{{ Request::is('blog') ? 'active' : '' }}">{!! HTML::link('blog', 'Blog') !!}</li>
+          @if(Auth::user())
+          <li class="{{ Request::is('profile') ? 'active' : '' }}">{!! HTML::link('profile', 'Profile') !!}</li>
+          <li>{!! HTML::link('user/logout', 'Logout') !!}</li>
+          @else
+          <li class="{{ Request::is('user/login') ? 'active' : '' }}">{!! HTML::link('user/login', 'Login') !!}</li>
+          @endif
+        </ul>
+      </div>
     </div>
   </div>
   <div class="main-wrapper">
