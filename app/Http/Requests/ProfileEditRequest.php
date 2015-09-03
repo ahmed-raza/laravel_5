@@ -27,7 +27,7 @@ class ProfileEditRequest extends Request {
 			'bio'			=> 'required|min:10',
 			'password'=> 'required',
 			'new_password' => 'min:5',
-			'password_confirmation' => 'min:5|same:pass',
+			'password_confirmation' => 'min:5|same:new_password',
 		];
 	}
 
