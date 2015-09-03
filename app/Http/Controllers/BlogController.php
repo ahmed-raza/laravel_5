@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\BlogPostRequest;
+use App\Http\Requests\BlogEditRequest;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use App\Comments;
@@ -115,9 +116,9 @@ class BlogController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, BlogPostRequest $BlogPostRequest)
+	public function update($id, BlogEditRequest $BlogEditRequest)
 	{
-		$input = $BlogPostRequest->all();
+		$input = $BlogEditRequest->all();
 		Blog::where('id', $id)->update(array(
 			'title'=>$input['title'],
 			'description'=>$input['description'],

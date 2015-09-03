@@ -33,7 +33,9 @@ img.star
 .form-submit{
   padding-top: 10px;
 }
-
+.form-edit-blog .span12.form-submit .btn-success {
+  width: 97.3%;
+}
 .span12.form-submit .btn-warning,
 .span12.form-submit .btn-success,
 .form-submit .btn-warning,
