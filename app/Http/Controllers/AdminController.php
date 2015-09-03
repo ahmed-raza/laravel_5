@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\MailRequest;
 use App\Http\Controllers\Controller;
 use App\Users;
 use App\Blog;
@@ -8,8 +9,7 @@ use Auth;
 use Redirect;
 use DB;
 use Hash;
-
-use Illuminate\Http\Request;
+use Mail;
 
 class AdminController extends Controller {
 
@@ -43,58 +43,24 @@ class AdminController extends Controller {
     return view('admin.posts.index')->with('data', $data);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+	public function mail(){
+    $data = array(
+      'title' => "Beasty B | Send a Mail",
+      );
+    return view('admin.mail.index')->with('data', $data);
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+  public function mailSend(MailRequest $MailRequest){
+    Mail::send('admin.mail.contact',
+        array(
+            'email' => $MailRequest->get('send-to'),
+            'user_message' => $MailRequest->get('message')
+        ), function($message){
+        $message->from('ahmed@creativefaze.com');
+        $message->to('ahmed.raza@square63.com', 'Admin')->subject('TODOParrot Feedback');
+    });
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    return Redirect::route('/')->with('message', 'Thanks for contacting us!');
+  }
 
 }

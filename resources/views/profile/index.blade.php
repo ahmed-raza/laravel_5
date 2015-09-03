@@ -23,6 +23,7 @@
           <li>{!! HTML::link('admin/posts', "Blog Posts") !!}</li>
           <li>{!! HTML::link('admin/users', "Users") !!}</li>
           <li>{!! HTML::link('admin/config', "Site Configuration") !!}</li>
+          <li>{!! HTML::link('admin/mail', "Mail") !!}</li>
         </ul>
       </div>
     </div>

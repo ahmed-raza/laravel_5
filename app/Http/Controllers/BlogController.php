@@ -52,17 +52,14 @@ class BlogController extends Controller {
 	 */
 	public function store(BlogPostRequest $BlogPostRequest)
 	{
-		$imageName = \Illuminate\Support\Str::slug($BlogPostRequest->get('title')).'-'. md5($BlogPostRequest->get('title')) .'.'.$BlogPostRequest->file('image')->getClientOriginalExtension();
 		$post = new Blog;
 		$post->author = Auth::user()->name;
 		$post->title  = $BlogPostRequest->get('title');
-		$post->img_name = $imageName;
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');
 		$post->keywords  = $BlogPostRequest->get('keywords');
 		$post->slug = \Illuminate\Support\Str::slug($BlogPostRequest->get('title'));
 		$post->save();
-		$BlogPostRequest->file('image')->move(base_path() . '/public/img/', $imageName);
 		return redirect('blog')->with('message', "Blog post ".$BlogPostRequest->get('title')." created.");
 	}
 
@@ -140,12 +137,9 @@ class BlogController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$image_name = Blog::find($id);
-		$image_name = $image_name->img_name;
-		Storage::delete(url().'/img/'.$image_name);
 		Blog::find($id)->delete();
 
-		return Redirect::route('blog.index')->with('message', url().'/img/'.$image_name);
+		return Redirect::route('blog.index')->with('message', 'Post deleted.');
 	}
 
 }

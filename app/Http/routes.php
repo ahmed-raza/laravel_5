@@ -32,3 +32,5 @@ Route::resource('comment', 'CommentsController');
 // Admin Panel Routes
 Route::get('admin/users', 'AdminController@users');
 Route::get('admin/posts', 'AdminController@posts');
+Route::get('admin/mail', 'AdminController@mail');
+Route::post('admin/mail/send', 'AdminController@mailSend');
