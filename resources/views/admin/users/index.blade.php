@@ -13,7 +13,7 @@
       <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->rank }}</td>
-        <td>{{ $user->updated_at }}</td>
+        <td>{!! HTML::link('admin/user/'.$user->id, 'View') !!}</td>
       </tr>
     @endforeach
   </table>

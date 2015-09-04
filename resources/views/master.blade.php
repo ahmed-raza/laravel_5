@@ -13,7 +13,7 @@
   <script>CKEDITOR.replace('content');</script>
   {!! HTML::script('js/test.jquery.js') !!}
 </head>
-<body>
+<body class="{{ $data['classes'] }}">
   <div class="header">
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">

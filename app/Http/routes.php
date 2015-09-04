@@ -34,3 +34,10 @@ Route::get('admin/users', 'AdminController@users');
 Route::get('admin/posts', 'AdminController@posts');
 Route::get('admin/mail', 'AdminController@mail');
 Route::post('admin/mail/send', 'AdminController@mailSend');
+
+// Admin Users Routes
+Route::group(['prefix' => 'admin'], function () {
+  Route::get('user/{id}', array('as' => 'admin.user.view', 'uses'=>'AdminUsersController@show'));
+  Route::get('user/{id}/edit', array('as' => 'admin.user.edit', 'uses'=>'AdminUsersController@edit'));
+  Route::post('user/update', array('as' => 'admin.user.update', 'uses'=>'AdminUsersController@update'));
+});

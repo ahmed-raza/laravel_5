@@ -16,6 +16,7 @@ class AuthController extends Controller {
 	public function index(){
     $data = array(
       'title' => 'Beasty B | Login',
+      'classes' => 'main-body user-auth user-login',
       );
     if (!Auth::user()) {
       return view('auth.index')->with('data', $data);
@@ -41,6 +42,7 @@ class AuthController extends Controller {
   public function regPage(){
     $data = array(
       'title' => 'Beasty B | Register',
+      'classes' => 'main-body user-auth user-registration',
       );
     return view('auth.register')->with('data', $data);
   }

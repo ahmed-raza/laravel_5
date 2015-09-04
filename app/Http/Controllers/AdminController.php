@@ -23,6 +23,7 @@ class AdminController extends Controller {
 		$query = Users::orderBy('name', 'ASC')->get();
     $data = array(
       'title' => "Beasty B | Site Users",
+      'classes' => 'main-body admin-side admin-index',
       'users' => $query
       );
     return view('admin.users.index')->with('data', $data);
@@ -38,6 +39,7 @@ class AdminController extends Controller {
 		$query = Blog::orderBy('created_at', 'DESC')->get();
     $data = array(
       'title' => "Beasty B | Site Posts",
+      'classes' => 'main-body admin-side total-posts',
       'posts' => $query
       );
     return view('admin.posts.index')->with('data', $data);
@@ -46,6 +48,7 @@ class AdminController extends Controller {
 	public function mail(){
     $data = array(
       'title' => "Beasty B | Send a Mail",
+      'classes' => 'main-body admin-side mail-page',
       );
     return view('admin.mail.index')->with('data', $data);
 	}
