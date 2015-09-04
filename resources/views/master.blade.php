@@ -20,7 +20,7 @@
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <ul class="nav pull-right">
+          <ul class="nav">
             <li class="{{ Request::is('/') ? 'active' : '' }}">{!! HTML::link('/', 'Home') !!}</li>
             <li class="{{ Request::is('blog') ? 'active' : '' }}">{!! HTML::link('blog', 'Blog') !!}</li>
             @if(Auth::user())

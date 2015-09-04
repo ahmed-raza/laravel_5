@@ -2,7 +2,6 @@
 
 use App\Http\Requests;
 use App\Http\Requests\BlogPostRequest;
-use App\Http\Requests\BlogEditRequest;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use App\Comments;
