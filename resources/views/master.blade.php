@@ -15,6 +15,7 @@
   {!! HTML::script('js/test.jquery.js') !!}
 </head>
 <body class="{{ $data['classes'] }}">
+<div class="main-container">
   <div class="header">
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
@@ -48,7 +49,6 @@
       </div>
     </div>
   </div>
-  <div class="main-wrapper">
     <div class="container">
       <div class="hidden-forms">
         <div class="alert alert-danger">Are you sure you wan't to carry out the operation?</div>
@@ -62,6 +62,7 @@
       @include('plugins.message')
       @yield('content')
     </div>
+  </div>
     <div class="footer">
       <div class="container">
         <div class="rights">
@@ -69,6 +70,5 @@
         </div>
       </div>
     </div>
-  </div>
 </body>
 </html>

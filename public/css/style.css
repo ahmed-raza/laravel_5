@@ -1,3 +1,14 @@
+html, body {
+  height: 100%;
+}
+.main-container{
+  min-height: 87.9%;
+}
+@-moz-document url-prefix() {
+    .main-container{
+      min-height: 87.8%;
+    }
+}
 #comment-field {
   display: none;
 }
@@ -105,4 +116,7 @@ img.star
 }
 .navbar .container {
   width: 40%;
+}
+.blog-view .comment-body {
+  width: 98.5%;
 }

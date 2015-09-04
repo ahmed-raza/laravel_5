@@ -34,7 +34,7 @@
         </div>
         <div class="field-comment">
           {!! Form::label('Comments') !!}
-          {!! Form::textarea('comment', '',array('class'=>'ckeditor comment-body')) !!}
+          {!! Form::textarea('comment', '',array('class'=>'comment-body', 'rows'=>'4', 'id'=>'Comments')) !!}
         </div>
         <div class="form-submit">
           {!! Form::submit('Comment', array('class'=>'btn btn-success')) !!}
