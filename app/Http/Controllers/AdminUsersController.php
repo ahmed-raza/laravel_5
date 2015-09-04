@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\AdminUEditRequest;
 use App\Http\Controllers\Controller;
 use App\Users;
+use App\Blog;
 use Auth;
 use Redirect;
 use DB;
@@ -116,6 +117,28 @@ class AdminUsersController extends Controller {
 	}
 
 	/**
+	 * Show the form for deleting the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function delete($id)
+	{
+		if (Auth::user()->rank == 'admin') {
+			$user = Users::find($id);
+	    $data = array(
+	      'title' => "Beasty B | ".$user->name."'s Profile",
+				'classes' => 'main-body admin-side admin-user-delete',
+	      'user'	=> $user
+	      );
+	    return view('admin.users.delete')->with('data', $data);
+		}
+		else{
+	    return redirect('/')->withErrors('You are not authorized to access that page.');
+		}
+	}
+
+	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
@@ -123,7 +146,20 @@ class AdminUsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Auth::user()->rank == 'admin' && Auth::user()->id != $id) {
+			$username = Users::find($id)->name;
+			if (isset($username)) {
+				Blog::where('author', '=', $username)->delete();
+				Users::find($id)->delete();
+		    return redirect('admin/users')->with('message', 'User deleted successfully.');
+			}
+			else{
+		    return redirect('admin/users')->withErrors('User not found.');
+			}
+		}
+		else{
+	    return redirect('admin/users')->withErrors('Super Admin cannot be deleted in any case.');
+		}
 	}
 
 }

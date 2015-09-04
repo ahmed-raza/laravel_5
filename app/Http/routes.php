@@ -40,4 +40,6 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('user/{id}', array('as' => 'admin.user.view', 'uses'=>'AdminUsersController@show'));
   Route::get('user/{id}/edit', array('as' => 'admin.user.edit', 'uses'=>'AdminUsersController@edit'));
   Route::patch('user/update/{id}', array('as' => 'admin.user.update', 'uses'=>'AdminUsersController@update'));
+  Route::get('user/{id}/delete', array('as' => 'admin.user.delete', 'uses'=>'AdminUsersController@delete'));
+  Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });

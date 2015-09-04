@@ -31,6 +31,12 @@
   <div class="span12 form-submit">
     {!! Form::submit('Update', array('class'=>'btn btn-warning')) !!}
   </div>
+  <div class="span12 form-cancel form-submit">
+    {!! HTML::linkRoute('admin.user.delete', 'Delete', array('id'=>$data['user']->id), array('class'=>'btn btn-danger')) !!}
+  </div>
+  <div class="span12 form-cancel form-submit">
+    {!! HTML::link(URL::previous(), 'Back', array('class'=>'btn btn-success')) !!}
+  </div>
   {!! Form::close() !!}
 
 @endsection

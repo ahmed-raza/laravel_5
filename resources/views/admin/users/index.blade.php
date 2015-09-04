@@ -13,7 +13,11 @@
       <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->rank }}</td>
-        <td>{!! HTML::link('admin/user/'.$user->id, 'View') !!}</td>
+        <td>
+          {!! HTML::link('admin/user/'.$user->id, 'View') !!}
+          {!! HTML::link('admin/user/'.$user->id.'/edit', 'Edit') !!}
+          {!! HTML::link('admin/user/'.$user->id.'/delete', 'Delete') !!}
+        </td>
       </tr>
     @endforeach
   </table>
