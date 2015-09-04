@@ -3,9 +3,8 @@
 @section('content')
 
   <h2>Edit {{ $data['user']->name }}</h2>
-  {!! Form::open(array('method'=>'PATCH', 'route'=>array('admin.user.update'), 'id'=>'admin-user-edit-form')) !!}
+  {!! Form::open(array('method'=>'PATCH', 'route'=>array('admin.user.update', $data['user']->id), 'id'=>'admin-user-edit-form')) !!}
   <div class="span6">
-    {!! Form::hidden('id', $data['user']->id) !!}
     {!! Form::label('Username') !!}
     {!! Form::text('name', $data['user']->name, array('class'=>'input-xlarge', 'disabled')) !!}
     {!! Form::label('Email') !!}

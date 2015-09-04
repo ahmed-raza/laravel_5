@@ -39,5 +39,5 @@ Route::post('admin/mail/send', 'AdminController@mailSend');
 Route::group(['prefix' => 'admin'], function () {
   Route::get('user/{id}', array('as' => 'admin.user.view', 'uses'=>'AdminUsersController@show'));
   Route::get('user/{id}/edit', array('as' => 'admin.user.edit', 'uses'=>'AdminUsersController@edit'));
-  Route::post('user/update', array('as' => 'admin.user.update', 'uses'=>'AdminUsersController@update'));
+  Route::patch('user/update/{id}', array('as' => 'admin.user.update', 'uses'=>'AdminUsersController@update'));
 });

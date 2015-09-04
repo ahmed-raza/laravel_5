@@ -22,7 +22,6 @@ class AdminUEditRequest extends Request {
 	public function rules()
 	{
 		return [
-			'id'			=> 'required',
 			'city'		=> 'min:3',
 			'country'	=> 'required|min:4',
 			'bio'			=> 'required|min:10',

@@ -95,9 +95,12 @@ img.star
   margin-top: 20px;
 }
 .footer .rights{
-  padding: 38px 22px 0px;
+  padding: 38px 0px 0px;
 }
 .blog-post .field-image img {
   width: 100px;
   height: 100px;
+}
+.navbar .container {
+  width: 40%;
 }

@@ -90,30 +90,29 @@ class AdminUsersController extends Controller {
 	 */
 	public function update($id, AdminUEditRequest $AdminUEditRequest)
 	{
-		return $id;
-		// if (Auth::user()->rank == 'admin' && !empty($AdminUEditRequest->get('new_password'))) {
-	 //    $new_password = $AdminUEditRequest->get('new_password');
-	 //    $con_passowrd = $AdminUEditRequest->get('password_confirmation');
-	 //    DB::table('users')
-	 //    ->where('id', $id)
-	 //    ->update(array(
-	 //        'password'	=> Hash::make($new_password),
-	 //      ));
-		// 	return redirect('profile')->with('message', 'Your profile have been updated.');
-		// }
-		// if (Auth::user()->rank == 'admin') {
-	 //    DB::table('users')
-	 //    ->where('id', $id)
-	 //    ->update(array(
-	 //        'bio'			=> $AdminUEditRequest->get('bio'),
-	 //        'city'		=> $AdminUEditRequest->get('city'),
-	 //        'country'	=> $AdminUEditRequest->get('country'),
-	 //      ));
-		// 	return redirect('profile')->with('message', 'Your profile have been updated.');
-		// }
-		// else{
-		// 	return Redirect::back()->withErrors('Current password is wrong.')->withInput();
-		// }
+		if (Auth::user()->rank == 'admin' && !empty($AdminUEditRequest->get('new_password'))) {
+	    $new_password = $AdminUEditRequest->get('new_password');
+	    $con_passowrd = $AdminUEditRequest->get('password_confirmation');
+	    DB::table('users')
+	    ->where('id', $id)
+	    ->update(array(
+	        'password'	=> Hash::make($new_password),
+	      ));
+			return redirect('admin/user/'.$id)->with('message', 'The profile have been updated.');
+		}
+		if (Auth::user()->rank == 'admin') {
+	    DB::table('users')
+	    ->where('id', $id)
+	    ->update(array(
+	        'bio'			=> $AdminUEditRequest->get('bio'),
+	        'city'		=> $AdminUEditRequest->get('city'),
+	        'country'	=> $AdminUEditRequest->get('country'),
+	      ));
+			return redirect('admin/user/'.$id)->with('message', 'The profile have been updated.');
+		}
+		else{
+			return Redirect::back()->withErrors('Current password is wrong.')->withInput();
+		}
 	}
 
 	/**
