@@ -23,6 +23,9 @@
     <div class="field-body">
       <p>{!! $data['post']->body !!}</p>
     </div>
+    <div class="field-blog-image yoxview">
+      <a href="/img/{{ $data['post']->img_name }}"><img src="/img/{{ $data['post']->img_name }}" class="img img-polaroid blogimage" alt=""></a>
+    </div>
   </div>
   <div class="comments-holder">
     @if(Auth::user())

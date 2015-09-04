@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\BlogPostRequest;
+use App\Http\Requests\BlogEditRequest;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use App\Comments;
@@ -55,13 +56,16 @@ class BlogController extends Controller {
 	public function store(BlogPostRequest $BlogPostRequest)
 	{
 		$post = new Blog;
+		$imageName = \Illuminate\Support\Str::slug($BlogPostRequest->get('title')).'-'. md5($BlogPostRequest->get('title')) .'.'.$BlogPostRequest->file('image')->getClientOriginalExtension();
 		$post->author = Auth::user()->name;
 		$post->title  = $BlogPostRequest->get('title');
+		$post->img_name = $imageName;
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');
 		$post->keywords  = $BlogPostRequest->get('keywords');
 		$post->slug = \Illuminate\Support\Str::slug($BlogPostRequest->get('title'));
 		$post->save();
+		$BlogPostRequest->file('image')->move(base_path() . '/public/img/', $imageName);
 		return redirect('blog')->with('message', "Blog post ".$BlogPostRequest->get('title')." created.");
 	}
 

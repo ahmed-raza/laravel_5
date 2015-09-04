@@ -9,7 +9,7 @@
       {!! Form::label('Title') !!}
       {!! Form::text('title', '', array('class'=>'input-xlarge')) !!}
       {!! Form::label('Image') !!}
-      {!! Form::file('image',  array('class'=>'input-xlarge')) !!}
+      {!! Form::file('image',  array('class'=>'input-xlarge', 'multiple')) !!}
     </div>
     <div class="span5">
       {!! Form::label('Description') !!}

@@ -120,3 +120,10 @@ img.star
 .blog-view .comment-body {
   width: 98.5%;
 }
+.blog-post .field-blog-image {
+  margin-bottom: 10px;
+}
+.blog-post .field-blog-image img{
+  height: 10%;
+  width: 10%;
+}
