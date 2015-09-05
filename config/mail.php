@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'driver' => env('MAIL_DRIVER', 'smtp'),
+	'driver' => env('MAIL_DRIVER', 'mandrill'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+	'host' => env('MAIL_HOST', 'smtp.mandrillapp.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
 	|
 	*/
 
-	'port' => env('MAIL_PORT', 465),
+	'port' => env('MAIL_PORT', 587),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => env('ahmed@creativefaze.com'),
+	'username' => env('ahmed.raza@square63.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
 	|
 	*/
 
-	'password' => env('beastmode1337'),
+	'password' => env('8AdV-jeNpNaZTJfVBGuu6A'),
 
 	/*
 	|--------------------------------------------------------------------------

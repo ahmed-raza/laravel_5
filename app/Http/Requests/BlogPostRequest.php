@@ -23,6 +23,7 @@ class BlogPostRequest extends Request {
 	{
 		return [
 			'title'	=>'required|min:3|max:25',
+			'image' => 'mimes:jpeg,bmp,png|max:150',
 			'body'	=>'required|min:10',
 		];
 	}

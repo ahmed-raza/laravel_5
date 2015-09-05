@@ -63,7 +63,7 @@ class AdminController extends Controller {
         $message->to('ahmed.raza@square63.com', 'Admin')->subject('TODOParrot Feedback');
     });
 
-    return Redirect::route('/')->with('message', 'Thanks for contacting us!');
+    return redirect('admin/mail')->with('message', 'Thanks for contacting us!');
   }
 
 }
