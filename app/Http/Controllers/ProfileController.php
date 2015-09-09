@@ -60,6 +60,17 @@ class ProfileController extends Controller {
 		//
 	}
 
+	public function showUser($id)
+	{
+		$user = Users::find($id);
+    $data = array(
+      'title' => "Beasty B | ".$user->name."'s Profile",
+      'classes' => 'main-body user-page user-profile',
+      'user'	=> $user
+      );
+    return view('profile.public_profile')->with('data', $data);
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *

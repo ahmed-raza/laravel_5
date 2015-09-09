@@ -22,6 +22,7 @@ Route::get('user/logout', 'AuthController@logout');
 
 // Profile Routes
 Route::resource('profile', 'ProfileController');
+Route::get('user/{id}', 'ProfileController@showUser');
 
 // Blog routes
 Route::resource('blog', 'BlogController');
@@ -44,7 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });
 
-Route::any('/{page?}', function(){
+Route::any('/{page?}/{id}', function(){
   $data = array(
     'title' => '404 Page not found',
     'classes' => 'page-not-found'
