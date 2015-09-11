@@ -8,6 +8,7 @@ use App\Blog;
 use App\Comments;
 use Auth;
 use Redirect;
+use Flash;
 
 use Illuminate\Http\Request;
 
@@ -44,7 +45,8 @@ class BlogController extends Controller {
 			return view('blog.create')->with('data', $data);
 		}
 		else{
-			return redirect('user/login')->withErrors('You need to login first.');
+			Flash::overlay('You need to login first.', 'Uh oh!');
+			return redirect('user/login');
 		}
 	}
 
