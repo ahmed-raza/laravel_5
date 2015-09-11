@@ -9,7 +9,11 @@
         {!! HTML::linkRoute('profile.edit', '', $data['user']->id, array('class'=>'close icon icon-pencil')) !!}
         <legend>{{ $data['user']->name }}</legend>
         <p>{{ $data['user']->email }}</p>
-        <p> Rank: {{ $data['user']->rank }}</p>
+        @if($data['user']->rank == 'admin')
+        <p> Rank: Super Admin</p>
+        @elseif($data['user']->rank == 'user')
+        <p> Rank: User</p>
+        @endif
         <p>{{ $data['user']->city }}</p>
         <p>{{ $data['user']->country }}</p>
         <p>{!! $data['user']->bio !!}</p>

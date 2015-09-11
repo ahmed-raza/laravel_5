@@ -8,13 +8,18 @@
       <tr>
         <th>Title</th>
         <th>Author</th>
+        <th>Post Date</th>
         <th>Actions</th>
       </tr>
       @foreach($data['posts'] as $post)
         <tr>
-          <td>{{ $user->title }}</td>
-          <td>{{ $user->author }}</td>
-          <td>{{ $user->created_at }}</td>
+          <td>{!! HTML::linkRoute('blog.show', $post->title, $post->slug)  !!}</td>
+          <td>{{ $post->author }}</td>
+          <td>{{ $post->created_at }}</td>
+          <td>
+            {!! HTML::linkRoute('blog.show', 'View', $post->slug) !!}
+            {!! HTML::linkRoute('blog.edit', 'Edit', $post->id) !!}
+          </td>
         </tr>
       @endforeach
     </table>

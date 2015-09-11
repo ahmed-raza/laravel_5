@@ -117,8 +117,9 @@ img.star
 .navbar .container {
   width: 55%;
 }
-.blog-view .comment-body {
+.blog-view textarea.comment-body {
   width: 98.5%;
+  resize: none;
 }
 .blog-post .field-blog-image {
   margin-bottom: 10px;

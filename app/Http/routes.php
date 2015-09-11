@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });
 
-Route::any('/{page?}/{id}', function(){
+Route::any('/{page?}', function(){
   $data = array(
     'title' => '404 Page not found',
     'classes' => 'page-not-found'

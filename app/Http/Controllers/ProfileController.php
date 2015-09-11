@@ -107,7 +107,10 @@ class ProfileController extends Controller {
 	    DB::table('users')
 	    ->where('id', $id)
 	    ->update(array(
-	        'password'	=> Hash::make($new_password),
+	        'password'=> Hash::make($new_password),
+	        'bio'			=> $ProfileEditRequest->get('bio'),
+	        'city'		=> $ProfileEditRequest->get('city'),
+	        'country'	=> $ProfileEditRequest->get('country'),
 	      ));
 			return redirect('profile')->with('message', 'Your profile have been updated.');
 		}

@@ -37,10 +37,14 @@
                 <li class="divider"></li>
                 <li><a href="{{ url('admin/config') }}"><i class="icon icon-wrench"></i> Site Configuration</a></li>
                 <li><a href="{{ url('admin/mail') }}"><i class="icon icon-envelope"></i> Send Mail</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url('user/logout') }}"><i class="icon icon-off"></i> Logout</a></li>
               </ul>
             </li>
             @endif
+            @if(Auth::user()->rank != 'admin')
             <li>{!! HTML::link('user/logout', 'Logout') !!}</li>
+            @endif
             @else
             <li class="{{ Request::is('user/login') ? 'active' : '' }}">{!! HTML::link('user/login', 'Login') !!}</li>
             @endif
