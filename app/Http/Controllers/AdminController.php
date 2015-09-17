@@ -51,11 +51,22 @@ class AdminController extends Controller {
 	}
 
 	public function mail(){
-    $data = array(
-      'title' => "Beasty B | Send a Mail",
-      'classes' => 'main-body admin-side mail-page',
-      );
-    return view('admin.mail.index')->with('data', $data);
+    if (Auth::user()) {
+      if (Auth::user()->rank == 'admin') {
+        $data = array(
+          'title' => "Beasty B | Send a Mail",
+          'classes' => 'main-body admin-side mail-page',
+          );
+        return view('admin.mail.index')->with('data', $data);
+      }
+      else{
+        return redirect('profile')->withErrors('You are not authorized to access this page.');
+      }
+    }
+    else{
+      Flash::overlay('You need to login first.', 'Uh oh!');
+      return redirect('user/login');
+    }
 	}
 
   public function mailSend(MailRequest $MailRequest){

@@ -9,7 +9,6 @@
   {!! HTML::script('js/jquery-2.1.1.js') !!}
   {!! HTML::script('js/jquery-1.10.1.min.js') !!}
   {!! HTML::script('js/bootstrap.js') !!}
-  {!! HTML::script('js/bootstrap.min.js') !!}
   {!! HTML::script('ckeditor-full/ckeditor.js') !!}
   {!! HTML::script('yoxview/yoxview-init.js') !!}
   <script>CKEDITOR.replace('content');</script>

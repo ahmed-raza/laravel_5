@@ -44,11 +44,3 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('user/{id}/delete', array('as' => 'admin.user.delete', 'uses'=>'AdminUsersController@delete'));
   Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });
-
-Route::any('/{page?}', function(){
-  $data = array(
-    'title' => '404 Page not found',
-    'classes' => 'page-not-found'
-    );
-  return view('plugins.404')->with('data', $data);
-})->where('page','.*');
