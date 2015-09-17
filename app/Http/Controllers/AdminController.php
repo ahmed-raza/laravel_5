@@ -10,6 +10,7 @@ use Redirect;
 use DB;
 use Hash;
 use Mail;
+use Flash;
 
 class AdminController extends Controller {
 
