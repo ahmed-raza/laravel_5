@@ -2,9 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Requests\MailRequest;
+use App\Http\Requests\HomeConfigRequest;
 use App\Http\Controllers\Controller;
 use App\Users;
 use App\Blog;
+use App\HomePageSettings;
 use Auth;
 use Redirect;
 use DB;
@@ -85,6 +87,56 @@ class AdminController extends Controller {
     else{
       return redirect('admin/mail')->withErrors('Something went wrong!');
     }
+  }
+
+  public function siteConfig(){
+    if (Auth::user()) {
+      if (Auth::user()->rank == 'admin') {
+        $data = array(
+          'title' => "Beasty B | Site Configuration",
+          'classes' => 'main-body admin-side site-config',
+          );
+        return view('admin.site.index')->with('data', $data);
+      }
+      else {
+        return redirect('profile')->withErrors('You are not authorized you access this page.');
+      }
+    }
+    else {
+      Flash::overlay('You need to login first.', 'Uh oh!');
+      return redirect('user/login');
+    }
+  }
+
+  public function siteHome(){
+    if (Auth::user()) {
+      if (Auth::user()->rank == 'admin') {
+        $defualt_settings = HomePageSettings::find(1);
+        $data = array(
+          'title' => 'Beasty B | Site Configuration',
+          'settings'=>$defualt_settings,
+          'classes' => 'main-body admin-side site-home',
+          );
+        return view('admin.site.home')->with('data', $data);
+      }
+      else{
+        return redirect('profile')->withErrors('You are not allowed to access this page.');
+      }
+    }
+    else{
+      Flash::overlay('You need to login first.', 'Uh oh!');
+      return redirect('user/login');
+    }
+  }
+
+  public function homeStore(HomeConfigRequest $HomeConfigRequest){
+    $title = $HomeConfigRequest->get('title');
+    $body = $HomeConfigRequest->get('body');
+    $homeSettings = HomePageSettings::find(1);
+    $homeSettings->title = $title;
+    $homeSettings->body = $body;
+    $homeSettings->push();
+    return redirect('admin/config')->with('message', 'Settings saved!');
   }
 
 }

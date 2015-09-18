@@ -35,6 +35,9 @@ Route::get('admin/users', 'AdminController@users');
 Route::get('admin/posts', 'AdminController@posts');
 Route::get('admin/mail', 'AdminController@mail');
 Route::post('admin/mail/send', 'AdminController@mailSend');
+Route::get('admin/config', 'AdminController@siteConfig');
+Route::get('admin/config/home', 'AdminController@siteHome');
+Route::post('admin/config/home/store', 'AdminController@homeStore');
 
 // Admin Users Routes
 Route::group(['prefix' => 'admin'], function () {

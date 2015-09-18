@@ -2,7 +2,19 @@
 
 @section('content')
 
-  <h2>Laravel 5.0</h2>
-  <p>This is a blog created in laravel 5.0</p>
+  <div class="hero-unit">
+    <h2>{{ $data['page']->title }}</h2>
+    <div class="content">{!! $data['page']->body !!}</div>
+    <a href="user/login" class="btn btn-large btn-success">Join Us</a>
+  </div>
+  <div class="recent-blogs">
+  <h2>Recent Blogs</h2>
+    @foreach($data['blogs'] as $blog)
+      <div class="span3">
+        <h3 class="title">{!! HTML::link('blog/'.$blog->slug, $blog->title) !!}</h3>
+        <div class="body">{!! substr($blog->body, 0, 100).'...' !!}</div>
+      </div>
+    @endforeach
+  </div>
 
 @endsection

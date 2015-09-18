@@ -54,14 +54,16 @@
       </div>
     </div>
     <div class="container">
-      <div class="hidden-forms">
-        <div class="alert alert-danger">Are you sure you wan't to carry out the operation?</div>
-        @if(isset($comment))
-        {!! Form::open(array('method'=>'DELETE', 'route'=>array('comment.destroy', $comment->id))) !!}
-        {!! Form::submit('Delete', array('class'=>'btn btn-danger btn-mini')) !!}
-        {!! Form::close() !!}
-        @endif
-      </div>
+      @if(Request::url() == 'http://blog/blog/{slug}')
+        <div class="hidden-forms">
+          <div class="alert alert-danger">Are you sure you wan't to carry out the operation?</div>
+          @if(isset($comment))
+          {!! Form::open(array('method'=>'DELETE', 'route'=>array('comment.destroy', $comment->id))) !!}
+          {!! Form::submit('Delete', array('class'=>'btn btn-danger btn-mini')) !!}
+          {!! Form::close() !!}
+          @endif
+        </div>
+      @endif
       @include('flash::message')
       @include('plugins.errors')
       @include('plugins.message')
