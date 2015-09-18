@@ -23,7 +23,7 @@ class BlogController extends Controller {
 	{
 		$query = Blog::orderBy('created_at', 'DESC')->paginate(5);
 		$data = array(
-			'title'=>'Beast B | Blog',
+			'title'=>'Machine Freak | Blog',
       'classes' => 'main-body blog-page blog-listing',
 			'blogs'=>$query
 			);
@@ -39,7 +39,7 @@ class BlogController extends Controller {
 	{
 		if (Auth::user()) {
 			$data = array(
-				'title'=>'Beast B | New Post',
+				'title'=>'Machine Freak | New Post',
       'classes' => 'main-body blog-page blog-new',
 				);
 			return view('blog.create')->with('data', $data);
@@ -88,7 +88,7 @@ class BlogController extends Controller {
 			$username = 'annonymous';
 		}
 		$data = array(
-			'title' => 'Beasty B | '.$query->title,
+			'title' => 'Machine Freak | '.$query->title,
       'classes' => 'main-body blog-page blog-view',
 			'post' => $query,
 			'comments'=>$comments,
@@ -108,7 +108,7 @@ class BlogController extends Controller {
 		$query = Blog::find($id);
 		if (Auth::user() && $query->author == Auth::user()->name ) {
 			$data = array(
-				'title' => 'Beasty B | Edit '.$query->title,
+				'title' => 'Machine Freak | Edit '.$query->title,
 	      'classes' => 'main-body blog-page blog-edit',
 				'post' => $query,
 				);

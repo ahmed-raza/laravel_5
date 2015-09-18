@@ -10,7 +10,7 @@
   <div class="recent-blogs">
   <h2>Recent Blogs</h2>
     @foreach($data['blogs'] as $blog)
-      <div class="span3">
+      <div class="span4 recent-blog">
         <h3 class="title">{!! HTML::link('blog/'.$blog->slug, $blog->title) !!}</h3>
         <div class="body">{!! substr($blog->body, 0, 100).'...' !!}</div>
       </div>

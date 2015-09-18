@@ -22,7 +22,7 @@ class ProfileController extends Controller {
 	{
 		$user = Users::find(Auth::user()->id);
     $data = array(
-      'title' => "Beasty B | ".$user->name."'s Profile",
+      'title' => "Machine Freak | ".$user->name."'s Profile",
       'classes' => 'main-body user-page user-profile',
       'user'	=> $user
       );
@@ -64,7 +64,7 @@ class ProfileController extends Controller {
 	{
 		$user = Users::find($id);
     $data = array(
-      'title' => "Beasty B | ".$user->name."'s Profile",
+      'title' => "Machine Freak | ".$user->name."'s Profile",
       'classes' => 'main-body user-page user-profile',
       'user'	=> $user
       );
@@ -82,7 +82,7 @@ class ProfileController extends Controller {
 		$user = Users::find($id);
 		if ($user->email == Auth::user()->email) {
 			$data = array(
-				'title' => 'Beasty B | Edit '.$user->name,
+				'title' => 'Machine Freak | Edit '.$user->name,
 	      'classes' => 'main-body user-page user-profile-edit',
 				'user'	=> $user
 				);

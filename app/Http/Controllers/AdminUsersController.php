@@ -54,7 +54,7 @@ class AdminUsersController extends Controller {
 	{
 		$user = Users::find($id);
     $data = array(
-      'title' => "Beasty B | ".$user->name."'s Profile",
+      'title' => "Machine Freak | ".$user->name."'s Profile",
 			'classes' => 'main-body admin-side admin-user-view',
       'user'	=> $user
       );
@@ -72,7 +72,7 @@ class AdminUsersController extends Controller {
 		$user = Users::find($id);
 		if (Auth::user()->rank == 'admin') {
 			$data = array(
-				'title' => 'Beasty B | Edit '.$user->name,
+				'title' => 'Machine Freak | Edit '.$user->name,
 				'classes' => 'main-body admin-side admin-user-edit',
 				'user'	=> $user
 				);
@@ -127,7 +127,7 @@ class AdminUsersController extends Controller {
 		if (Auth::user()->rank == 'admin') {
 			$user = Users::find($id);
 	    $data = array(
-	      'title' => "Beasty B | ".$user->name."'s Profile",
+	      'title' => "Machine Freak | ".$user->name."'s Profile",
 				'classes' => 'main-body admin-side admin-user-delete',
 	      'user'	=> $user
 	      );

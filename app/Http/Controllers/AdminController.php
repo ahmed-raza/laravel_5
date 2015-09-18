@@ -26,7 +26,7 @@ class AdminController extends Controller {
     if (Auth::user()->rank == 'admin') {
   		$query = Users::orderBy('name', 'ASC')->get();
       $data = array(
-        'title' => "Beasty B | Site Users",
+        'title' => "Machine Freak | Site Users",
         'classes' => 'main-body admin-side admin-index',
         'users' => $query
         );
@@ -46,7 +46,7 @@ class AdminController extends Controller {
 	{
 		$query = Blog::orderBy('created_at', 'DESC')->get();
     $data = array(
-      'title' => "Beasty B | Site Posts",
+      'title' => "Machine Freak | Site Posts",
       'classes' => 'main-body admin-side total-posts',
       'posts' => $query
       );
@@ -57,7 +57,7 @@ class AdminController extends Controller {
     if (Auth::user()) {
       if (Auth::user()->rank == 'admin') {
         $data = array(
-          'title' => "Beasty B | Send a Mail",
+          'title' => "Machine Freak | Send a Mail",
           'classes' => 'main-body admin-side mail-page',
           );
         return view('admin.mail.index')->with('data', $data);
@@ -93,7 +93,7 @@ class AdminController extends Controller {
     if (Auth::user()) {
       if (Auth::user()->rank == 'admin') {
         $data = array(
-          'title' => "Beasty B | Site Configuration",
+          'title' => "Machine Freak | Site Configuration",
           'classes' => 'main-body admin-side site-config',
           );
         return view('admin.site.index')->with('data', $data);
@@ -113,7 +113,7 @@ class AdminController extends Controller {
       if (Auth::user()->rank == 'admin') {
         $defualt_settings = HomePageSettings::find(1);
         $data = array(
-          'title' => 'Beasty B | Site Configuration',
+          'title' => 'Machine Freak | Site Configuration',
           'settings'=>$defualt_settings,
           'classes' => 'main-body admin-side site-home',
           );

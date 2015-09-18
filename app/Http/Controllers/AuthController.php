@@ -15,7 +15,7 @@ class AuthController extends Controller {
 
 	public function index(){
     $data = array(
-      'title' => 'Beasty B | Login',
+      'title' => 'Machine Freak | Login',
       'classes' => 'main-body user-auth user-login',
       );
     if (!Auth::user()) {
@@ -41,7 +41,7 @@ class AuthController extends Controller {
 
   public function regPage(){
     $data = array(
-      'title' => 'Beasty B | Register',
+      'title' => 'Machine Freak | Register',
       'classes' => 'main-body user-auth user-registration',
       );
     return view('auth.register')->with('data', $data);

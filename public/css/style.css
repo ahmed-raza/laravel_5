@@ -128,3 +128,9 @@ img.star
   height: 10%;
   width: 10%;
 }
+.recent-blog {
+  background-color: #ddd;
+  width: 28%;
+  padding: 10px;
+  border-radius: 5px;
+}
