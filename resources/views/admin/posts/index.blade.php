@@ -19,6 +19,7 @@
           <td>
             {!! HTML::linkRoute('blog.show', 'View', $post->slug) !!}
             {!! HTML::linkRoute('blog.edit', 'Edit', $post->id) !!}
+            {!! HTML::linkRoute('blog.delete', 'Delete', $post->id) !!}
           </td>
         </tr>
       @endforeach

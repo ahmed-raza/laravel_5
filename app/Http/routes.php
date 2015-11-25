@@ -33,6 +33,7 @@ Route::resource('comment', 'CommentsController');
 // Admin Panel Routes
 Route::get('admin/users', 'AdminController@users');
 Route::get('admin/posts', 'AdminController@posts');
+Route::get('admin/posts/delete/{id}',array('as'=>'blog.delete', 'uses'=>'AdminController@postsDelete'));
 Route::get('admin/mail', 'AdminController@mail');
 Route::post('admin/mail/send', 'AdminController@mailSend');
 Route::get('admin/config', 'AdminController@siteConfig');
@@ -47,6 +48,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('user/{id}/delete', array('as' => 'admin.user.delete', 'uses'=>'AdminUsersController@delete'));
   Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });
+
+// Ajax route
+Route::get('admin/test', array('as'=>'test', 'uses'=>'AdminController@test'));
+Route::post('admin/test_post', 'AdminController@testPost');
 
 Route::any('/{page?}', function(){
   $data = array(

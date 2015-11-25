@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="_token" content="{!! csrf_token() !!}"/>
   <title>{{ $data['title'] }}</title>
   {!! HTML::style('css/bootstrap.css') !!}
   {!! HTML::style('css/bootstrap.min.css') !!}
@@ -71,12 +72,17 @@
     </div>
   </div>
   <script> $('#flash-overlay-modal').modal(); </script>
-    <div class="footer">
-      <div class="container">
-        <div class="rights">
-          <p>Developed by Ahmed Raza. Powered by Laravel 5.0, All rights reserved 2015.</p>
-        </div>
+  <div class="footer">
+    <div class="container">
+      <div class="rights">
+        <p>Developed by Ahmed Raza. Powered by Laravel 5.0, All rights reserved 2015.</p>
       </div>
     </div>
+  </div>
+  <script type="text/javascript">
+  $.ajaxSetup({
+     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+  });
+  </script>
 </body>
 </html>

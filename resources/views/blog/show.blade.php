@@ -11,7 +11,7 @@
       </p>
     </div>
     <div class="actions">
-      @if($data['username'] == $data['post']->author || Auth::user()->rank == 'admin')
+      @if($data['username'] == $data['post']->author || $data['rank'] == 'admin')
       <span class="edit">{!! HTML::linkRoute('blog.edit', 'Edit', $data['post']->id, array('class'=>'btn btn-mini btn-inverse')) !!}</span>
       <span class="delete">
         {!! Form::open(array('method'=>'DELETE', 'route'=>array('blog.destroy', $data['post']->id))) !!}

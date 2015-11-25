@@ -11,7 +11,7 @@ class HomeController extends Controller {
 
 	public function index(){
     $page = HomePageSettings::find(1);
-    $blogs = Blog::orderBy('created_at', 'DESC')->take(3)->get();
+    $blogs = Blog::orderBy('created_at', 'DESC')->take(6)->get();
     $data = array(
       'title' => $page->title . ' | Home',
       'page' => $page,

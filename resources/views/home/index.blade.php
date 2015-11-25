@@ -4,7 +4,7 @@
 
   <div class="hero-unit">
     <h2>{{ $data['page']->title }}</h2>
-    <div class="content">{!! $data['page']->body !!}</div>
+    <div>{!! $data['page']->body !!}</div>
     <a href="user/login" class="btn btn-large btn-success">Join Us</a>
   </div>
   <div class="recent-blogs">

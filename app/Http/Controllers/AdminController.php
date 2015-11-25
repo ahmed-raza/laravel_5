@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\MailRequest;
 use App\Http\Requests\HomeConfigRequest;
+use App\Http\Requests\TestAjaxRequest;
 use App\Http\Controllers\Controller;
 use App\Users;
 use App\Blog;
@@ -13,6 +14,8 @@ use DB;
 use Hash;
 use Mail;
 use Flash;
+use Input;
+use Request;
 
 class AdminController extends Controller {
 
@@ -23,7 +26,7 @@ class AdminController extends Controller {
 	 */
 	public function users()
 	{
-    if (Auth::user()->rank == 'admin') {
+    if (Auth::user() && Auth::user()->rank == 'admin') {
   		$query = Users::orderBy('name', 'ASC')->get();
       $data = array(
         'title' => "Machine Freak | Site Users",
@@ -33,7 +36,7 @@ class AdminController extends Controller {
       return view('admin.users.index')->with('data', $data);
 	  }
     else{
-      return redirect('/')->withErrors('You are not authorized to access that page.');
+      return redirect('/')->withErrors('You are not authorized to access that page.😴');
     }
   }
 
@@ -52,6 +55,12 @@ class AdminController extends Controller {
       );
     return view('admin.posts.index')->with('data', $data);
 	}
+
+  public function postsDelete($id){
+    if (isset($id)) {
+      return $id;
+    }
+  }
 
 	public function mail(){
     if (Auth::user()) {
@@ -137,6 +146,21 @@ class AdminController extends Controller {
     $homeSettings->body = $body;
     $homeSettings->push();
     return redirect('admin/config')->with('message', 'Settings saved!');
+  }
+
+  public function test(){
+    $data = array(
+      'title' => 'Machine Freak | Site Configuration',
+      'classes' => 'main-body admin-side site-home',
+      );
+    return view('admin.test.index')->with('data', $data);
+  }
+
+  public function testPost(TestAjaxRequest $TestAjaxRequest){
+    if(Request::ajax()) {
+      $hello = $TestAjaxRequest->get('hello');
+      return $hello;
+    }
   }
 
 }

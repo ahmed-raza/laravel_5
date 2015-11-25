@@ -83,9 +83,11 @@ class BlogController extends Controller {
 		$comments = Comments::where('blog_id', $query->id)->get();
 		if (Auth::user()) {
 			$username = Auth::user()->name;
+			$rank = Auth::user()->rank;
 		}
 		else{
 			$username = 'annonymous';
+			$rank = null;
 		}
 		$data = array(
 			'title' => 'Machine Freak | '.$query->title,
@@ -93,6 +95,7 @@ class BlogController extends Controller {
 			'post' => $query,
 			'comments'=>$comments,
 			'username' => $username,
+			'rank' => $rank
 			);
 		return view('blog.show')->with('data', $data);
 	}
@@ -105,17 +108,29 @@ class BlogController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$query = Blog::find($id);
-		if (Auth::user() && $query->author == Auth::user()->name ) {
-			$data = array(
-				'title' => 'Machine Freak | Edit '.$query->title,
-	      'classes' => 'main-body blog-page blog-edit',
-				'post' => $query,
-				);
-			return view('blog.edit')->with('data', $data);
+		if (Auth::user()) {
+			$rank = Auth::user()->rank;
 		}
 		else{
-			return Redirect::back()->withErrors("You don't own '$query->title' post.");
+			$rank = null;
+		}
+		$query = Blog::find($id);
+		if (Auth::user()){
+			if($query->author == Auth::user()->name || $rank == 'admin') {
+				$data = array(
+					'title' => 'Machine Freak | Edit '.$query->title,
+					'classes' => 'main-body blog-page blog-edit',
+					'post' => $query,
+					);
+				return view('blog.edit')->with('data', $data);
+			}
+			else {
+				return redirect('blog')->withErrors('You don\'t own this post.');
+			}
+		}
+		else{
+			Flash::overlay('You need to login first.', 'Uh oh!');
+			return redirect('user/login');
 		}
 	}
 
