@@ -8,8 +8,8 @@
     <div class="span6">
       {!! Form::label('Title') !!}
       {!! Form::text('title', '', array('class'=>'input-xlarge')) !!}
-      {!! Form::label('Image') !!}
-      {!! Form::file('image',  array('class'=>'input-xlarge')) !!}
+      {!! Form::label('Files') !!}
+      {!! Form::file('files[]',  array('class'=>'input-xlarge', 'multiple'=>true)) !!}
     </div>
     <div class="span5">
       {!! Form::label('Description') !!}

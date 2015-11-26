@@ -24,7 +24,11 @@
       <p>{!! $data['post']->body !!}</p>
     </div>
     <div class="field-blog-image yoxview">
-      <a href="/img/{{ $data['post']->img_name }}"><img src="/img/{{ $data['post']->img_name }}" class="img img-polaroid blogimage" alt=""></a>
+      @foreach($data['files'] as $file)
+        @if(!empty($file))
+          <a href="/img/{{ $file }}"><img src="/img/{{ $file }}" class="img img-polaroid blogimage" alt=""></a>
+        @endif
+      @endforeach
     </div>
   </div>
   <div class="comments-holder">

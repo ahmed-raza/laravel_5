@@ -58,16 +58,21 @@ class BlogController extends Controller {
 	public function store(BlogPostRequest $BlogPostRequest)
 	{
 		$post = new Blog;
-		$imageName = \Illuminate\Support\Str::slug($BlogPostRequest->get('title')).'-'. md5($BlogPostRequest->get('title')) .'.'.$BlogPostRequest->file('image')->getClientOriginalExtension();
+		$files = $BlogPostRequest->file('files');
+		$filesStore = "";
+		foreach ($files as $key => $value) {
+			$fileName =  $BlogPostRequest->get('title').'_('.$key.').'.$value->getClientOriginalExtension();
+			$value->move(base_path() . '/public/img/', $fileName);
+			$filesStore .= $fileName.",";
+			$post->img_name = $filesStore;
+		}
 		$post->author = Auth::user()->name;
 		$post->title  = $BlogPostRequest->get('title');
-		$post->img_name = $imageName;
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');
 		$post->keywords  = $BlogPostRequest->get('keywords');
 		$post->slug = \Illuminate\Support\Str::slug($BlogPostRequest->get('title'));
 		$post->save();
-		$BlogPostRequest->file('image')->move(base_path() . '/public/img/', $imageName);
 		return redirect('blog')->with('message', "Blog post ".$BlogPostRequest->get('title')." created.");
 	}
 
@@ -89,10 +94,13 @@ class BlogController extends Controller {
 			$username = 'annonymous';
 			$rank = null;
 		}
+		$files = explode(',', $query->img_name);
+		$nbr = count($files);
 		$data = array(
 			'title' => 'Machine Freak | '.$query->title,
       'classes' => 'main-body blog-page blog-view',
 			'post' => $query,
+			'files' => $files,
 			'comments'=>$comments,
 			'username' => $username,
 			'rank' => $rank
