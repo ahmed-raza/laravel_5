@@ -3,7 +3,7 @@
 @section('content')
   <div class="blog blog-post-{{ $data['post']->id }} blog-post">
     <div class="title">
-      <h2>{{ $data['post']->title }}</h2>
+      <h2>{!! HTML::linkRoute('blog.show', $data['post']->title, $data['post']->slug, array('title'=>"Submitted by: ".$data['post']->author)) !!}</h2>
     </div>
     <div class="submission-info">
       <p>
@@ -26,7 +26,7 @@
     <div class="field-blog-image yoxview">
       @foreach($data['files'] as $file)
         @if(!empty($file))
-          <a href="/img/{{ $file }}"><img src="/img/{{ $file }}" class="img img-polaroid blogimage" alt=""></a>
+          <a href="/img/{{ $file }}"><img src="/img/{{ $file }}" class="img img-polaroid blogimage"></a>
         @endif
       @endforeach
     </div>
