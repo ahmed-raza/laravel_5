@@ -49,6 +49,11 @@ Route::group(['prefix' => 'admin'], function () {
   Route::delete('user/{id}/destroy', array('as' => 'admin.user.destroy', 'uses'=>'AdminUsersController@destroy'));
 });
 
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+  ]);
+
 // Ajax route
 Route::get('admin/test', array('as'=>'test', 'uses'=>'AdminController@test'));
 Route::post('admin/test_post', 'AdminController@testPost');

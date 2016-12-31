@@ -12,6 +12,10 @@
   {!! HTML::script('js/bootstrap.js') !!}
   {!! HTML::script('ckeditor-full/ckeditor.js') !!}
   {!! HTML::script('yoxview/yoxview-init.js') !!}
+  <script>CKEDITOR.replace('content',{
+		"extraPlugins": "imagebrowser",
+		"imageBrowser_listUrl": "/path/to/images_list.json"
+  });</script>
   {!! HTML::script('js/test.jquery.js') !!}
 </head>
 <body class="class">

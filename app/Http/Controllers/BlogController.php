@@ -40,7 +40,7 @@ class BlogController extends Controller {
 		if (Auth::user()) {
 			$data = array(
 				'title'=>'Machine Freak | New Post',
-      'classes' => 'main-body blog-page blog-new',
+				'classes' => 'main-body blog-page blog-new',
 				);
 			return view('blog.create')->with('data', $data);
 		}
@@ -66,7 +66,7 @@ class BlogController extends Controller {
 			$filesStore .= $fileName.",";
 			$post->img_name = $filesStore;
 		}
-		$post->author = Auth::user()->name;
+		$post->users_id = Auth::user()->id;
 		$post->title  = $BlogPostRequest->get('title');
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');

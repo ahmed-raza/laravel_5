@@ -3,7 +3,7 @@
 @section('content')
 
   <h2>User Profile</h2>
-
+  <div class="inner-container">
     <div class="span8">
       <div class="well">
         {!! HTML::linkRoute('profile.edit', '', $data['user']->id, array('class'=>'close icon icon-pencil')) !!}
@@ -19,11 +19,21 @@
         <p>{!! $data['user']->bio !!}</p>
       </div>
     </div>
+    <div class="span8">
+      <table class="table table-hover">
+        <tr>
+          <th>Title</th>
+          <th>Post Date</th>
+        </tr>
+      </table>
+    </div>
+  </div>
   @if($data['user']->rank == 'admin')
+  <div class="side-bar">
     <div class="span3">
       <div class="well">
         <legend>Admin Menu</legend>
-        <ul>
+        <ul class="nav nav-list">
           <li>{!! HTML::link('admin/posts', "Blog Posts") !!}</li>
           <li>{!! HTML::link('admin/users', "Users") !!}</li>
           <li>{!! HTML::link('admin/config', "Site Configuration") !!}</li>
@@ -31,6 +41,7 @@
         </ul>
       </div>
     </div>
+  </div>
   @endif
 
 @endsection

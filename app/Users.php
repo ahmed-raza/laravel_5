@@ -5,4 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Users extends Model{
   protected $table = 'users';
+
+  public function article(){
+    return $this->hasMany('App\Blog');
+  }
 }

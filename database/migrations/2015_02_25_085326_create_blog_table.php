@@ -15,7 +15,7 @@ class CreateBlogTable extends Migration {
 		Schema::create('blog', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('author');
+			$table->integer('users_id')->unsigned();
 			$table->string('title')->unique();
 			$table->string('img_name');
 			$table->text('body');
@@ -23,6 +23,12 @@ class CreateBlogTable extends Migration {
 			$table->string('keywords');
 			$table->string('slug');
 			$table->timestamps();
+			$table->timestamp('published_at');
+
+			$table->foreign('users_id')
+						->references('id')
+						->on('users')
+						->onDelete('cascade');
 		});
 	}
 
