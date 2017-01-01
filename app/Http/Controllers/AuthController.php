@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRegRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Controllers\Controller;
-use App\Users;
+use App\User;
 use Auth;
 use Redirect;
 use Hash;
@@ -48,13 +48,13 @@ class AuthController extends Controller {
   }
 
   public function register(UserRegRequest $UserRegRequest){
-    if (Users::count() == 0) {
+    if (User::count() == 0) {
       $user_rank = 'admin';
     }
     else{
       $user_rank = 'user';
     }
-    Users::insert(array(
+    User::insert(array(
         'name' => $UserRegRequest->get('name'),
         'email' => $UserRegRequest->get('email'),
         'password' => Hash::make($UserRegRequest->get('password')),

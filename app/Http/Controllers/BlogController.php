@@ -66,7 +66,7 @@ class BlogController extends Controller {
 			$filesStore .= $fileName.",";
 			$post->img_name = $filesStore;
 		}
-		$post->users_id = Auth::user()->id;
+		$post->user_id = Auth::user()->id;
 		$post->title  = $BlogPostRequest->get('title');
 		$post->body  = $BlogPostRequest->get('body');
 		$post->description  = $BlogPostRequest->get('description');

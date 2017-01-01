@@ -14,7 +14,7 @@
       @foreach($data['posts'] as $post)
         <tr>
           <td>{!! HTML::linkRoute('blog.show', $post->title, $post->slug)  !!}</td>
-          <td>{{ $post->author }}</td>
+          <td>{{ $post->user->name }}</td>
           <td>{{ $post->created_at }}</td>
           <td>
             {!! HTML::linkRoute('blog.show', 'View', $post->slug) !!}

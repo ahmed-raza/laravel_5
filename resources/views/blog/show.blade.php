@@ -3,15 +3,15 @@
 @section('content')
   <div class="blog blog-post-{{ $data['post']->id }} blog-post">
     <div class="title">
-      <h2>{!! HTML::linkRoute('blog.show', $data['post']->title, $data['post']->slug, array('title'=>"Submitted by: ".$data['post']->author)) !!}</h2>
+      <h2>{!! HTML::linkRoute('blog.show', $data['post']->title, $data['post']->slug, array('title'=>"Submitted by: ".$data['post']->user->name)) !!}</h2>
     </div>
     <div class="submission-info">
       <p>
-        Submitted by <i>{{ $data['post']->author }}</i>
+        Submitted by <i>{{ $data['post']->user->name }}</i>
       </p>
     </div>
     <div class="actions">
-      @if($data['username'] == $data['post']->author || $data['rank'] == 'admin')
+      @if($data['username'] == $data['post']->user->name || $data['rank'] == 'admin')
       <span class="edit">{!! HTML::linkRoute('blog.edit', 'Edit', $data['post']->id, array('class'=>'btn btn-mini btn-inverse')) !!}</span>
       <span class="delete">
         {!! Form::open(array('method'=>'DELETE', 'route'=>array('blog.destroy', $data['post']->id))) !!}

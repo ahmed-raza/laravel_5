@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\ProfileEditRequest;
 use App\Http\Controllers\Controller;
-use App\Users;
+use App\User;
 use Auth;
 use Redirect;
 use DB;
@@ -20,7 +20,7 @@ class ProfileController extends Controller {
 	 */
 	public function index()
 	{
-		$user = Users::find(Auth::user()->id);
+		$user = User::find(Auth::user()->id);
     $data = array(
       'title' => "Machine Freak | ".$user->name."'s Profile",
       'classes' => 'main-body user-page user-profile',
@@ -62,7 +62,7 @@ class ProfileController extends Controller {
 
 	public function showUser($id)
 	{
-		$user = Users::find($id);
+		$user = User::find($id);
     $data = array(
       'title' => "Machine Freak | ".$user->name."'s Profile",
       'classes' => 'main-body user-page user-profile',
@@ -79,7 +79,7 @@ class ProfileController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$user = Users::find($id);
+		$user = User::find($id);
 		if ($user->email == Auth::user()->email) {
 			$data = array(
 				'title' => 'Machine Freak | Edit '.$user->name,
