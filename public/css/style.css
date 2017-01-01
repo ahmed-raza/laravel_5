@@ -55,9 +55,15 @@ img.star
 .form-submit .btn-success {
   width: 100%;
 }
+ul.blogs {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+}
 .blogs li{
   list-style: none;
   border-bottom: 1px solid #ccc;
+  padding: 10px 0px 10px 0px;
 }
 .blogs .blog-title {
   float: left;

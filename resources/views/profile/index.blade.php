@@ -26,7 +26,7 @@
           </tr>
           @foreach($data['user']->blogs as $blog)
             <tr>
-              <td>{{ $blog->title }}</td>
+              <td>{!! HTML::link('blog/'.$blog->slug, $blog->title) !!}</td>
               <td>{{ $blog->created_at->diffForHumans() }}</td>
             </tr>
           @endforeach
