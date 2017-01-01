@@ -134,9 +134,8 @@ ul.blogs {
   height: 10%;
   width: 10%;
 }
-.recent-blog {
+.inner {
   background-color: #ddd;
-  width: 28%;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;

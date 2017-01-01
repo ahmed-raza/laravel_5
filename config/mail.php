@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'ahmed.raza@square63.com', 'name' => 'Ahmed Raza'],
+	'from' => ['address' => 'raza1778@gmail.com', 'name' => 'Ahmed Raza'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => env('ahmed.raza@square63.com'),
+	'username' => env('raza1778@gmail.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
 	|
 	*/
 
-	'password' => env('8AdV-jeNpNaZTJfVBGuu6A'),
+	'password' => env('e169f310d8f08ed40d6bed353caae5d1'),
 
 	/*
 	|--------------------------------------------------------------------------
