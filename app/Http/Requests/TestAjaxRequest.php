@@ -22,7 +22,7 @@ class TestAjaxRequest extends Request {
 	public function rules()
 	{
 		return [
-			'hello'=>'required',
+			'hello'=>'required|min:3',
 		];
 	}
 

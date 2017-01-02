@@ -140,3 +140,7 @@ ul.blogs {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+#error {
+  margin-left: 10px;
+  color: #e9322d;
+}

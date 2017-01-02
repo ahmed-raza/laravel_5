@@ -21,7 +21,7 @@ class BlogController extends Controller {
 	 */
 	public function index()
 	{
-		$query = Blog::orderBy('created_at', 'DESC')->paginate(5);
+		$query = Blog::orderBy('created_at', 'DESC')->paginate(3);
 		$data = array(
 			'title'=>'Machine Freak | Blog',
       'classes' => 'main-body blog-page blog-listing',

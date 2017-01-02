@@ -1,12 +1,24 @@
 $(document).ready(function(){
   $("#myform").submit(function(){
-    var hello = $("#hello").val();
+    var hello = $("#hello");
       $.ajax({
         url:'/admin/test_post',
         type: "post",
-        data:{ 'hello': hello,'_token': $('input[name=_token]').val() },
+        data:{ 'hello': hello.val(),'_token': $('input[name=_token]').val() },
         success:function(data){
-          alert(data);
+          var result = data;
+          hello.parents('form').find('#error').text('');
+          hello.parents('form').after(data);
+          hello.blur();
+          hello.val('');
+        },
+        error: function(data){
+          var error = data.responseJSON;
+          if (error) {
+            hello.attr('required', true);
+            hello.parents('form').find('#error').text(error.hello[0]);
+            hello.focus();
+          }
         }
       });
     return false;
