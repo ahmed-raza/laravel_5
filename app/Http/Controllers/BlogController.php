@@ -59,12 +59,17 @@ class BlogController extends Controller {
 	{
 		$post = new Blog;
 		$files = $BlogPostRequest->file('files');
-		$filesStore = "";
-		foreach ($files as $key => $value) {
-			$fileName =  $BlogPostRequest->get('title').'_('.$key.').'.$value->getClientOriginalExtension();
-			$value->move(base_path() . '/public/img/', $fileName);
-			$filesStore .= $fileName.",";
-			$post->img_name = $filesStore;
+		if (!isset($files[0])) {
+			$post->img_name = '';
+		}
+		else{
+			$filesStore = "";
+			foreach ($files as $key => $value) {
+				$fileName =  $BlogPostRequest->get('title').'_('.$key.').'.$value->getClientOriginalExtension();
+				$value->move(base_path() . '/public/img/', $fileName);
+				$filesStore .= $fileName.",";
+				$post->img_name = $filesStore;
+			}
 		}
 		$post->user_id = Auth::user()->id;
 		$post->title  = $BlogPostRequest->get('title');

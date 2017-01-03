@@ -18,16 +18,20 @@
           <p>{{ $data['user']->city }}</p>
           <p>{{ $data['user']->country }}</p>
           <p>{!! $data['user']->bio !!}</p>
+          <p>Total Posts: {!! count($data['user']->blogs) !!}</p>
         </div>
+        <h2>My Posts</h2>
         <table class="table table-hover">
           <tr>
+            <th>#</th>
             <th>Title</th>
             <th>Post Date</th>
           </tr>
-          @foreach($data['user']->blogs as $blog)
+          @foreach($data['user']->blogs as $key => $blog)
             <tr>
+              <td>{{ $key + 1 }}</td>
               <td>{!! HTML::link('blog/'.$blog->slug, $blog->title) !!}</td>
-              <td>{{ $blog->created_at->diffForHumans() }}</td>
+              <td>{{ $blog->created_at->format('F d, Y') }}</td>
             </tr>
           @endforeach
         </table>

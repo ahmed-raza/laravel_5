@@ -24,11 +24,13 @@
       <p>{!! $data['post']->body !!}</p>
     </div>
     <div class="field-blog-image yoxview">
+    @if(isset($data['files']))
       @foreach($data['files'] as $file)
         @if(!empty($file))
           <a href="/img/{{ $file }}"><img src="/img/{{ $file }}" class="img img-polaroid blogimage"></a>
         @endif
       @endforeach
+    @endif
     </div>
   </div>
   <div class="comments-holder">
