@@ -3,13 +3,9 @@
 @section('content')
 
   <h2>Blog</h2>
-  <div class="row">  
-    <div class="span12">
-      <span class="new-blog">
-        {!! HTML::linkRoute('blog.create', 'Create a new blog post') !!}
-      </span>
-    </div>
-  </div>
+  <span class="new-blog">
+    {!! HTML::linkRoute('blog.create', 'Create a new blog post') !!}
+  </span>
   <ul class="blogs">
   @foreach($data['blogs'] as $blog)
     <li>
